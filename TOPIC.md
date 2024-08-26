@@ -27,11 +27,11 @@
 
 ## 제품 아키텍처 (이미지)
 
-https://github.com/hackersground-kr/hg-klyc/blob/main/images/%E1%84%8B%E1%85%A1%E1%84%8F%E1%85%B5%E1%84%90%E1%85%A6%E1%86%A8%E1%84%8E%E1%85%A7.png
+https://github.com/hackersground-kr/hg-klyc/blob/main/images/%E1%84%83%E1%85%A1%E1%84%8B%E1%85%B5%E1%84%8B%E1%85%A5%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%86%B7.png
 
 ## 제품 소개 슬라이드
 
-**(필수)** 제품 또는 서비스를 소개하는 슬라이드 덱을 리포지토리에 추가해 주세요. 슬라이드 덱은 [decks](./decks) 디렉토리에 저장한 후 이곳에 링크를 걸어주세요.
+https://docs.google.com/presentation/d/1PSibbJbXlATpwjDnDIfJnoW4eGY_uWfBbtC_A8Nmihc/edit?usp=sharing
 
 ## 제품 소개 동영상
 
