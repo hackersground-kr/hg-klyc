@@ -18,10 +18,10 @@ function CreatePost() {
     }
 
     try {
-      await axios.post("/api/posts", formData, {
+      await axios.post(`${process.env.REACT_APP_API_URL}/api/posts`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
+          Authorization: `Bearer ${localStoragce.getItem("token")}`,
         },
       });
       navigate("/posts");

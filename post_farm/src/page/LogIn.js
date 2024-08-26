@@ -1,31 +1,34 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
-import '../style/Login.css'; // CSS 파일 경로
-import delIcon from '../images/del.png'; // 삭제 버튼 이미지 경로
-import eyeOpenIcon from '../images/eye_1.png'; // 비밀번호 표시 아이콘 이미지 경로
-import eyeClosedIcon from '../images/eye_2.png'; // 비밀번호 숨기기 아이콘 이미지 경로
+import React, { useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import "../style/Login.css"; // CSS 파일 경로
+import delIcon from "../images/del.png"; // 삭제 버튼 이미지 경로
+import eyeOpenIcon from "../images/eye_1.png"; // 비밀번호 표시 아이콘 이미지 경로
+import eyeClosedIcon from "../images/eye_2.png"; // 비밀번호 숨기기 아이콘 이미지 경로
 
 function Login() {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('/api/login', { username, password });
-      localStorage.setItem('token', response.data.token);
-      navigate('/posts');
+      const response = await axios.post(
+        `${process.env.REACT_APP_API_URL}/api/login`,
+        { username, password }
+      );
+      localStorage.setItem("token", response.data.token);
+      navigate("/posts");
     } catch (error) {
-      console.error('Login failed', error);
-      alert('Invalid credentials');
+      console.error("Login failed", error);
+      alert("유효하지 않음");
     }
   };
 
   const clearUsername = () => {
-    setUsername('');
+    setUsername("");
   };
 
   const togglePasswordVisibility = () => {
@@ -44,23 +47,36 @@ function Login() {
             value={username}
             onChange={(e) => setUsername(e.target.value)}
           />
-          <button type="button" onClick={clearUsername} className="delete-button">
+          <button
+            type="button"
+            onClick={clearUsername}
+            className="delete-button"
+          >
             <img src={delIcon} alt="Delete" />
           </button>
         </div>
         <div className="input-container">
           <input
-            type={showPassword ? 'text' : 'password'}
+            type={showPassword ? "text" : "password"}
             id="password"
             placeholder="비밀번호"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <button type="button" onClick={togglePasswordVisibility} className="toggle-password">
-            <img src={showPassword ? eyeOpenIcon : eyeClosedIcon} alt="Toggle Password" />
+          <button
+            type="button"
+            onClick={togglePasswordVisibility}
+            className="toggle-password"
+          >
+            <img
+              src={showPassword ? eyeOpenIcon : eyeClosedIcon}
+              alt="Toggle Password"
+            />
           </button>
         </div>
-        <button type="submit" className="login-button">로그인</button>
+        <button type="submit" className="login-button">
+          로그인
+        </button>
       </form>
       <div className="signup-link">
         아직 계정이 없다면? <a href="/signup">회원가입</a>으로
