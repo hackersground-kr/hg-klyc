@@ -1,9 +1,9 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Login from "../src/page/Login/LogIn";
-import Signup from "../src/page/SignUp/SignUp";
-import PostList from "../src/page/PostList/PostList";
-import CreatePost from "../src/page/CreatePost/CreatePost";
+import Login from "./page/LogIn";
+import Signup from "./page/SignUp";
+import PostList from "./page/PostList";
+import CreatePost from "./page/CreatePost";
 
 function App() {
   return (
