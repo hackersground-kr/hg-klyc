@@ -23,8 +23,8 @@ public class JoinService {
 
         Boolean isExist = userRepository.existsByUserName(userName);
 
-        if(isExist){
-            return;
+        if (userRepository.existsByUserName(userName)) {
+            throw new IllegalArgumentException("이미 사용 중인 사용자 이름입니다.");
         }
 
         UserEntity data = new UserEntity();

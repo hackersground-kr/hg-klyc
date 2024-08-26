@@ -7,6 +7,9 @@ import org.example.hgproject.post.dto.BoardDto;
 import org.example.hgproject.post.entity.BoardEntity;
 import org.example.hgproject.post.repository.BoardRepository;
 import org.example.hgproject.user.entity.UserEntity;
+import org.example.hgproject.user.repository.UserRepository;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
@@ -22,12 +25,26 @@ import java.util.stream.Collectors;
 public class BoardService {
 
     private final BoardRepository boardRepository;
+    private final UserRepository userRepository;
+
     private final String uploadDir = "uploads/";
 
-    public BoardEntity createBoard(BoardDto boardDto, UserEntity userEntity) throws IOException {
+    private UserEntity getAuthenticatedUser() {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (principal instanceof UserDetails) {
+            String username = ((UserDetails) principal).getUsername();
+            return userRepository.findByUserName(username);
+        } else {
+            throw new IllegalStateException("인증된 사용자가 없습니다.");
+        }
+    }
+
+    public BoardEntity createBoard(BoardDto boardDto) throws IOException {
         // 게시글 작성
+        UserEntity userEntity = getAuthenticatedUser();
+
         BoardEntity boardEntity = new BoardEntity();
-        boardEntity.setAuthor(boardDto.getAuthor());
+        boardEntity.setAuthor(userEntity.getUserName());
         boardEntity.setContent(boardDto.getContent());
         boardEntity.setTitle(boardDto.getTitle());
 
@@ -70,6 +87,10 @@ public class BoardService {
         BoardEntity boardEntity = boardRepository.findById(postId)
                 .orElseThrow(() -> new IllegalArgumentException("게시글을 찾을 수 없습니다."));
 
+        if (!boardEntity.getAuthor().equals(userEntity.getUserName())) {
+            throw new AccessDeniedException("게시글 수정 권한이 없습니다.");
+        }
+
         boardEntity.setTitle(boardDto.getTitle());
         boardEntity.setContent(boardDto.getContent());
 
@@ -80,6 +101,10 @@ public class BoardService {
     public void deleteBoard(Long postId, UserEntity userEntity) throws AccessDeniedException {
         BoardEntity boardEntity = boardRepository.findById(postId)
                 .orElseThrow(() -> new IllegalArgumentException("게시글을 찾을 수 없습니다."));
+
+        if (!boardEntity.getAuthor().equals(userEntity.getUserName())) {
+            throw new AccessDeniedException("게시글 삭제 권한이 없습니다.");
+        }
 
         boardRepository.delete(boardEntity);
     }

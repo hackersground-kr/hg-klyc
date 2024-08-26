@@ -19,7 +19,7 @@ public class CommentController {
     public CommentDto createComment(@PathVariable Long postId,
                                     @RequestBody CommentDto commentDto,
                                     @AuthenticationPrincipal UserEntity userEntity) {
-        CommentEntity commentEntity = commentService.createComment(postId, commentDto, userEntity);
+        CommentEntity commentEntity = commentService.createComment(postId, commentDto);
 
         CommentDto responseDto = new CommentDto();
         responseDto.setCommentId(commentEntity.getCommentId());

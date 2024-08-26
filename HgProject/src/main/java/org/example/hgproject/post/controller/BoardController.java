@@ -40,7 +40,7 @@ public class BoardController {
     public ResponseEntity<BoardEntity> createBoard(
             @ModelAttribute BoardDto boardDto,
             @AuthenticationPrincipal UserEntity userEntity) throws IOException {
-        BoardEntity boardEntity = boardService.createBoard(boardDto, userEntity);
+        BoardEntity boardEntity = boardService.createBoard(boardDto);
         return new ResponseEntity<>(boardEntity, HttpStatus.CREATED);
     }
 
