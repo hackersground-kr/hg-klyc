@@ -27,7 +27,7 @@
 
 ## 제품 아키텍처 (이미지)
 
-**(필수)** 제품 또는 서비스의 전체 구성도 또는 아키텍처를 이미지로 작성해 주세요. 이미지는 [images](./images) 디렉토리에 저장한 후 이곳에 링크를 걸어주세요.
+https://github.com/hackersground-kr/hg-klyc/blob/main/images/%E1%84%8B%E1%85%A1%E1%84%8F%E1%85%B5%E1%84%90%E1%85%A6%E1%86%A8%E1%84%8E%E1%85%A7.png
 
 ## 제품 소개 슬라이드
 
