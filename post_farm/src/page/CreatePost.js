@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-function CreatePost() {
+function CreatePost({ token }) {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [image, setImage] = useState(null);
@@ -21,7 +21,7 @@ function CreatePost() {
       await axios.post(`${process.env.REACT_APP_API_URL}/api/posts`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
-          Authorization: `Bearer ${localStoragce.getItem("token")}`,
+          Authorization: `Bearer ${token}`,
         },
       });
       navigate("/posts");
