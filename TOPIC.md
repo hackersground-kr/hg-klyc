@@ -31,7 +31,7 @@ https://github.com/hackersground-kr/hg-klyc/blob/main/images/%E1%84%83%E1%85%A1%
 
 ## 제품 소개 슬라이드
 
-https://docs.google.com/presentation/d/1PSibbJbXlATpwjDnDIfJnoW4eGY_uWfBbtC_A8Nmihc/edit?usp=sharing
+https://github.com/hackersground-kr/hg-klyc/blob/main/%E1%84%80%E1%85%A6%E1%84%89%E1%85%B5%E1%84%91%E1%85%A1%E1%86%B7%20ppt.pdf
 
 ## 제품 소개 동영상
 
